@@ -15,6 +15,10 @@
 */
 
 // Code here
+function CarFactory(make, model){
+  this.make = make
+  this.model = model
+}
 
 ////////// PROBLEM 2 //////////
 
@@ -35,6 +39,8 @@ function Employee(name, email, hireDate) {
   
   // Code here
   
+var bob = new Employee('Bob', 'bob@gmail.com', '01-02-98')
+
   ////////// PROBLEM 3 //////////
   
   // Do not edit the code below.
@@ -57,6 +63,17 @@ function Employee(name, email, hireDate) {
   */
   
   // Code here
+
+  function Car(make, model, year){
+    this.make = make
+    this.model = model
+    this.year  = year
+    this.move = 0
+    this.moveCar = function moveCar() {
+      this.move += 10
+       return this.move
+    }
+  }
   
   ////////// PROBLEM 4 //////////
   
@@ -76,6 +93,11 @@ function Employee(name, email, hireDate) {
   }
   
   // Code here
+
+  Movie.prototype.changeRating = function(number){
+    rating = (this.rating + number) / 2 
+      return rating
+  }
   
   ////////// PROBLEM 5 //////////
   
@@ -85,13 +107,29 @@ function Employee(name, email, hireDate) {
   
   // Code here
   
+function User(name, age, email, savedPosts){
+  this.name = name
+  this.age = age
+  this.email = email
+  this.savedPosts = savedPosts
+}
+
+User.prototype.addSavedPost = function(id, title, rating){  
+  this.savedPosts.push({id, title, rating})
+}
+
+console.log()
   ////////// PROBLEM 6 //////////
   
   // You will be using the constructor function you just created in problem 5.
   // Write a prototype method for the User constructor function named removeSavedPost that will take in one number parameter representing the post id. Use this id to find and remove the matching object in the savedPosts array.
   
   // Code here
-  
+  User.prototype.removeSavedPost = function(id){
+  let index = this.savedPosts.findIndex(e => e.id  === id)
+  this.savedPosts.splice(index, 1)
+}
+
   ////////// PROBLEM 7 //////////
   
   // You will continue to use the constructor function you created in problem 5.
@@ -99,3 +137,8 @@ function Employee(name, email, hireDate) {
   
   // Code here
   
+  User.prototype.changePostRating = function(id, newRating) {
+    let index = this.savedPosts.findIndex(e => e.id === id)
+    this.savedPosts[index].rating = newRating
+    console.log(index)
+  }
